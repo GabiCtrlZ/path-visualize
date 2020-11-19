@@ -8,6 +8,9 @@ import { setMatrixSquare } from '../store/actions/matrix'
 import store from '../store/store'
 import matrixCloner from '../lib/matrix-cloner'
 
+const visitedDelay = 4
+const pathDelay = 100
+
 const vectors = [
   [0, 1],
   [1, 0],
@@ -55,14 +58,14 @@ export default async () => {
   visited.forEach((node, i) => {
     setTimeout(() => {
       store.dispatch(setMatrixSquare(node, 'visited'))
-    }, i)
+    }, i * visitedDelay)
   })
 
   if (!found) {
     setTimeout(() => {
       store.dispatch(setInApp('isAlgorithmFinished', true))
       store.dispatch(setInApp('isAlgorithmRunning', false))
-    }, visited.length)
+    }, visited.length * visitedDelay)
     return
   }
 
@@ -78,11 +81,11 @@ export default async () => {
   path.reverse().forEach((node, i) => {
     setTimeout(() => {
       store.dispatch(setMatrixSquare(node, 'path'))
-    }, visited.length + (i * 100))
+    }, (visited.length * visitedDelay) + (i * pathDelay))
   })
 
   setTimeout(() => {
     store.dispatch(setInApp('isAlgorithmFinished', true))
     store.dispatch(setInApp('isAlgorithmRunning', false))
-  }, visited.length + (path.length * 100))
+  }, (visited.length * visitedDelay) + (path.length * pathDelay))
 }

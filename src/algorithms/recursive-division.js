@@ -7,6 +7,8 @@ import matrixCloner from '../lib/matrix-cloner'
 import randomRange from '../lib/random-range'
 import { setInApp } from '../store/actions/app'
 
+const wallDelay = 4
+
 const createChambers = async ([sx, sy], [ex, ey], matrix, wall) => {
   const height = ex - sx // 3
   const width = ey - sy // 3
@@ -84,10 +86,10 @@ export default async (setCreatingMaze) => {
   wall.forEach((node, i) => {
     setTimeout(() => {
       store.dispatch(setMatrixSquare(node, 'wall'))
-    }, i)
+    }, i * wallDelay)
   })
   setTimeout(() => {
     store.dispatch(setInApp('isAlgorithmRunning', false))
     setCreatingMaze(false)
-  }, wall.length)
+  }, wall.length * wallDelay)
 }
