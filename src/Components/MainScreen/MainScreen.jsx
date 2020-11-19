@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import SearchDrawer from './SearchDrawer'
 import TutorialModal from '../TutorialModal/TutorialModal'
+import { IS_MOBILE } from '../../consts'
 
 const useStyles = makeStyles(({ spacing }) => ({
   container: {
@@ -26,7 +27,7 @@ function MainScreen(props) {
   return (
     <div className={classes.container}>
       <SearchDrawer />
-      {open && <TutorialModal open={open} onClose={() => setOpen(false)} />}
+      {open && !IS_MOBILE && <TutorialModal open={open && !IS_MOBILE} onClose={() => setOpen(false)} />}
     </div>
   )
 }

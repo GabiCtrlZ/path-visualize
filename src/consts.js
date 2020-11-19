@@ -43,11 +43,14 @@ const DATA_STRACTURES = {
   graph: 'Graph',
 }
 
+const IS_MOBILE = window.innerWidth <= 742
+const DRAWER_SIZE = IS_MOBILE ? 0 : 386
+
 const PLAYGROUND_MEASUREMENTS = {
-  width: window.innerWidth - 48 - 386,
+  width: window.innerWidth - 48 - DRAWER_SIZE,
   height: window.innerHeight - 64 - 48,
   matrixHeight: Math.floor((window.innerHeight - 64 - 48) / (SQUARE_SIDE * 4)),
-  matrixWidth: Math.floor((window.innerWidth - 48 - 386) / (SQUARE_SIDE * 4)),
+  matrixWidth: Math.floor((window.innerWidth - 48 - DRAWER_SIZE) / (SQUARE_SIDE * 4)),
 }
 
 const ALGORITHMS = {
@@ -82,6 +85,8 @@ const COLORS = [
 ]
 
 export {
+  DRAWER_SIZE,
+  IS_MOBILE,
   LANGS,
   COLORS,
   NODE_ENV,

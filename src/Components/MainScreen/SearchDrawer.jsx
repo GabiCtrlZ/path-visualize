@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import MenuIcon from '@material-ui/icons/Menu'
 import AppBar from '@material-ui/core/AppBar'
-import { Button, Divider } from '@material-ui/core'
+import { Button, Divider, IconButton } from '@material-ui/core'
 import { connect } from 'react-redux'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Settings from './Settings/Settings'
 import Actions from './Actions/Actions'
-import { PLAYGROUND_MEASUREMENTS } from '../../consts'
+import { PLAYGROUND_MEASUREMENTS, IS_MOBILE } from '../../consts'
 import Matrix from './Matrix/Matrix'
 import { resetMatrix } from '../../store/actions/matrix'
 
@@ -21,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
+    width: IS_MOBILE ? '' : `calc(100% - ${drawerWidth}px)`,
+    marginLeft: IS_MOBILE ? 0 : drawerWidth,
   },
   drawer: {
     width: drawerWidth,
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchDrawer(props) {
   const classes = useStyles()
+  const [open, setOpen] = useState(false)
   const { dispatch, isAlgorithmRunning } = props
 
   return (
@@ -64,6 +66,16 @@ function SearchDrawer(props) {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.headerContainer}>
+          {IS_MOBILE && (
+            <IconButton
+              className={classes.header}
+              aria-label="open drawer"
+              onClick={() => setOpen(true)}
+              edge="start"
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
           <Typography variant="h6" noWrap className={classes.header}>
             Playground
           </Typography>
@@ -80,13 +92,14 @@ function SearchDrawer(props) {
       </AppBar>
       <Drawer
         className={classes.drawer}
-        variant="permanent"
+        variant={IS_MOBILE ? 'temporary' : 'permanent'}
+        open={IS_MOBILE ? open : true}
         classes={{
           paper: classes.drawerPaper,
         }}
         anchor="left"
       >
-        <Settings />
+        <Settings setOpen={setOpen} />
         <Divider className={classes.divider} />
         <Actions />
       </Drawer>

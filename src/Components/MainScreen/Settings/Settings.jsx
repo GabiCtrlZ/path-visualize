@@ -14,7 +14,7 @@ import Autocomplete from './Autocomplete'
 import WzSearchInput from '../../Common/WzSearchInput'
 import SwitchContainer from '../../Common/SwitchContainer'
 import SearchButton from './SearchButton'
-import { ALGORITHMS } from '../../../consts'
+import { ALGORITHMS, IS_MOBILE } from '../../../consts'
 import { setAlgorithm, setInApp } from '../../../store/actions/app'
 import recursiveDivision from '../../../algorithms/recursive-division'
 import { resetMatrix } from '../../../store/actions/matrix'
@@ -52,6 +52,7 @@ function Settings(props) {
     algorithm,
     isAlgorithmRunning,
     dispatch,
+    setOpen,
   } = props
 
   const itemList = Object.keys(ALGORITHMS)
@@ -67,7 +68,9 @@ function Settings(props) {
           color="inherit"
           className={classes.button}
           aria-label="open drawer"
-          onClick={() => { }}
+          onClick={() => {
+            if (IS_MOBILE) setOpen(false)
+          }}
           edge="start"
         >
           <MenuIcon />
