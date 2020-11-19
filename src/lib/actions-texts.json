@@ -1,0 +1,22 @@
+{
+  "wall": {
+    "main": "Adds a wall on click, walls cant be passed",
+    "secondary": "Walls are unlimited"
+  },
+  "unvisited": {
+    "main": "Removes walls and weights",
+    "secondary": "To remove everything reset playground"
+  },
+  "weight": {
+    "main": "Weighted node, passing it \"costs\" 3 normal moves",
+    "secondary": "BFS doesn't support weighted nodes"
+  },
+  "start": {
+    "main": "Determine the start node position",
+    "secondary": "There can be only one"
+  },
+  "end": {
+    "main": "Determine the goal node position",
+    "secondary": "There can be only one"
+  }
+}
