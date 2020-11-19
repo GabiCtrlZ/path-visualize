@@ -8,7 +8,7 @@ import { setMatrixSquare } from '../store/actions/matrix'
 import store from '../store/store'
 import matrixCloner from '../lib/matrix-cloner'
 
-const visitedDelay = 4
+const visitedDelay = 20
 const pathDelay = 100
 
 const vectors = [

@@ -9,7 +9,7 @@ import store from '../store/store'
 import matrixCloner from '../lib/matrix-cloner'
 import pq from '../lib/priority-queue'
 
-const visitedDelay = 4
+const visitedDelay = 20
 const pathDelay = 100
 
 const vectors = [

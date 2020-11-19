@@ -7,7 +7,7 @@ import matrixCloner from '../lib/matrix-cloner'
 import randomRange from '../lib/random-range'
 import { setInApp } from '../store/actions/app'
 
-const wallDelay = 4
+const wallDelay = 20
 
 const createChambers = async ([sx, sy], [ex, ey], matrix, wall) => {
   const height = ex - sx // 3
