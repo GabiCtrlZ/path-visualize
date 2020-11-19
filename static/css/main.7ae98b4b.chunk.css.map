@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,oBACE,OAAU,CACV,sBACF","file":"main.7ae98b4b.chunk.css","sourcesContent":["::-webkit-scrollbar {\n  width: 0px;\n  background: transparent; /* make scrollbar transparent */\n}\n"]}
