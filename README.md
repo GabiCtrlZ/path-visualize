@@ -15,7 +15,9 @@ main page:
 <img src="https://raw.githubusercontent.com/GabiCtrlZ/path-visualize/master/src/readme-pics/main-screen.png" alt="MainScreen" />
 
 
-Search for your favorite algorithm using the search input and autocomplete
+Search for your favorite algorithm using the search input and autocomplete.
+
+Note that some algorithms are unweighted, while others are weighted. Unweighted algorithms do not take weight nodes into account, whereas weighted ones do. Additionally, not all algorithms guarantee the shortest path.
 
 <img src="https://raw.githubusercontent.com/GabiCtrlZ/path-visualize/master/src/readme-pics/autocomplete.png" alt="search"
 	width="570" height="550" />
@@ -30,7 +32,7 @@ Build your own "maze" using various actions
 	width="550" height="870" />
 
 <img src="https://raw.githubusercontent.com/GabiCtrlZ/path-visualize/master/src/readme-pics/actions-examples.png" alt="ac-examples"
-	width="750" height="570" />
+	width="750" height="520" />
 
 Or use maze generating with recursive division
 
