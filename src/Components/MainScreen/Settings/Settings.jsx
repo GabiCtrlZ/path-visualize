@@ -14,7 +14,7 @@ import Autocomplete from './Autocomplete'
 import WzSearchInput from '../../Common/WzSearchInput'
 import SwitchContainer from '../../Common/SwitchContainer'
 import SearchButton from './SearchButton'
-import { ALGORITHMS, IS_MOBILE } from '../../../consts'
+import { ALGORITHMS } from '../../../consts'
 import { setAlgorithm, setInApp } from '../../../store/actions/app'
 import recursiveDivision from '../../../algorithms/recursive-division'
 import { resetMatrix } from '../../../store/actions/matrix'
@@ -68,9 +68,7 @@ function Settings(props) {
           color="inherit"
           className={classes.button}
           aria-label="open drawer"
-          onClick={() => {
-            if (IS_MOBILE) setOpen(false)
-          }}
+          onClick={() => setOpen(false)}
           edge="start"
         >
           <MenuIcon />
@@ -86,6 +84,7 @@ function Settings(props) {
           checked={creatingMaze}
           onChange={({ target: { checked } }) => {
             if (!creatingMaze && !isAlgorithmRunning) {
+              setOpen(false)
               setCreatingMaze(checked)
               dispatch(resetMatrix())
               dispatch(setInApp('isAlgorithmRunning', true))
@@ -106,7 +105,7 @@ function Settings(props) {
       </Container>
       <div className={classes.divider} />
       {isAutoCompleteOn && <Autocomplete itemList={itemList} setSearchVal={(value) => dispatch(setAlgorithm(value))} />}
-      {(ALGORITHMS[algorithm]) && <SearchButton />}
+      {(ALGORITHMS[algorithm]) && <SearchButton setOpen={setOpen} />}
       <br />
     </>
   )

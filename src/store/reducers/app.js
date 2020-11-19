@@ -10,8 +10,8 @@ const initialState = Immutable({
   dataStracture: DATA_STRACTURES.matrix,
   action: 'wall',
   algorithm: 'BFS',
-  start: [matrixHeight, matrixWidth],
-  end: [matrixHeight, matrixWidth * 3],
+  start: [Math.floor(matrixHeight / 4), Math.floor(matrixWidth / 4)],
+  end: [Math.floor(matrixHeight / 4), Math.floor(matrixWidth / 4) * 3],
   isAlgorithmRunning: false,
   isAlgorithmFinished: false,
 })
@@ -22,6 +22,6 @@ export default handleActions({
   [appTypes.setAlgorithm]: (state, { payload }) => state.set('algorithm', payload),
   [appTypes.set]: (state, { payload: { path, data } }) => state.set(path, data),
   [matrixTypes.resetMatrix]: (state) => state
-    .set('start', [matrixHeight, matrixWidth])
-    .set('end', [matrixHeight, matrixWidth * 3]),
+    .set('start', [Math.floor(matrixHeight / 4), Math.floor(matrixWidth / 4)])
+    .set('end', [Math.floor(matrixHeight / 4), Math.floor(matrixWidth / 4) * 3]),
 }, initialState)

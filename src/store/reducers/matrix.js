@@ -8,11 +8,11 @@ import matrixCloner from '../../lib/matrix-cloner'
 const { matrixHeight, matrixWidth } = PLAYGROUND_MEASUREMENTS
 
 const initMatrix = () => {
-  const temp = (Array.from({ length: matrixHeight * 4 },
-    () => Array.from({ length: matrixWidth * 4 }, () => 'unvisited')))
+  const temp = (Array.from({ length: matrixHeight },
+    () => Array.from({ length: matrixWidth }, () => 'unvisited')))
 
-  temp[matrixHeight][matrixWidth] = 'start'
-  temp[matrixHeight][matrixWidth * 3] = 'end'
+  temp[Math.floor(matrixHeight / 4)][Math.floor(matrixWidth / 4)] = 'start'
+  temp[Math.floor(matrixHeight / 4)][Math.floor(matrixWidth / 4) * 3] = 'end'
 
   return Immutable(temp)
 }

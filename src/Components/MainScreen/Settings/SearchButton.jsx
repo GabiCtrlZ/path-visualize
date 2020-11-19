@@ -50,10 +50,12 @@ function SearchButton(props) {
     isAlgorithmRunning,
     algorithm,
     dispatch,
+    setOpen,
     isAlgorithmFinished,
   } = props
 
   const onClick = () => {
+    setOpen(false)
     if (isAlgorithmFinished) {
       dispatch(clearVisited())
       dispatch(setInApp('isAlgorithmFinished', false))

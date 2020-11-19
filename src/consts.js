@@ -49,8 +49,8 @@ const DRAWER_SIZE = IS_MOBILE ? 0 : 386
 const PLAYGROUND_MEASUREMENTS = {
   width: window.innerWidth - 48 - DRAWER_SIZE,
   height: window.innerHeight - 64 - 48,
-  matrixHeight: Math.floor((window.innerHeight - 64 - 48) / (SQUARE_SIDE * 4)),
-  matrixWidth: Math.floor((window.innerWidth - 48 - DRAWER_SIZE) / (SQUARE_SIDE * 4)),
+  matrixHeight: Math.floor((window.innerHeight - 64 - 48) / (SQUARE_SIDE)),
+  matrixWidth: Math.floor((window.innerWidth - 48 - DRAWER_SIZE) / (SQUARE_SIDE)),
 }
 
 const ALGORITHMS = {
