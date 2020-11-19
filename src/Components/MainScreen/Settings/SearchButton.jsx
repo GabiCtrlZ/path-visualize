@@ -1,19 +1,33 @@
 import React from 'react'
 import {
+  Checkbox,
   Divider,
+  FormControlLabel,
   makeStyles,
-  Tooltip,
 } from '@material-ui/core'
 import { connect } from 'react-redux'
+import { get } from 'lodash'
 import { setInApp } from '../../../store/actions/app'
 import algorithms from '../../../algorithms'
 import { clearVisited } from '../../../store/actions/matrix'
+import { ALGORITHMS } from '../../../consts'
 
 const useStyles = makeStyles((theme) => ({
   searchButton: {
-    marginTop: theme.spacing(2),
     width: 130,
     alignSelf: 'flex-end',
+  },
+  greenCheck: {
+    color: 'green',
+    '&$checked': {
+      color: 'green',
+    },
+  },
+  redCheck: {
+    color: theme.palette.error.main,
+    '&$checked': {
+      color: theme.palette.error.main,
+    },
   },
   Start: {
     background: theme.palette.primary.main,
@@ -21,6 +35,13 @@ const useStyles = makeStyles((theme) => ({
   Stop: {
     background: theme.palette.grey[200],
     cursor: 'default',
+  },
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginLeft: theme.spacing(5),
+    marginTop: theme.spacing(2),
   },
   searchButtonText: {
     display: 'inline-flex',
@@ -69,11 +90,31 @@ function SearchButton(props) {
   return (
     <>
       <Divider />
-      <Tooltip
-        title={isAlgorithmRunning ? '' : ''}
-        arrow
-        placement="top"
-      >
+      <div className={classes.container}>
+        <FormControlLabel
+          control={(
+            <Checkbox
+              color="error"
+              className={get(ALGORITHMS[algorithm], 'weighted', false) ? classes.greenCheck : classes.redCheck}
+              disableRipple
+              indeterminate={!get(ALGORITHMS[algorithm], 'weighted', false)}
+              checked
+            />
+          )}
+          label="Weighted"
+        />
+        <FormControlLabel
+          control={(
+            <Checkbox
+              color="error"
+              className={get(ALGORITHMS[algorithm], 'shortest', false) ? classes.greenCheck : classes.redCheck}
+              disableRipple
+              indeterminate={!get(ALGORITHMS[algorithm], 'shortest', false)}
+              checked
+            />
+          )}
+          label="Guarantee Shortest"
+        />
         <button
           type="button"
           onClick={onClick}
@@ -86,7 +127,7 @@ function SearchButton(props) {
             {additionalClass}
           </span>
         </button>
-      </Tooltip>
+      </div>
     </>
   )
 }

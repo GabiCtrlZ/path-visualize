@@ -1,4 +1,5 @@
 import React from 'react'
+import { get } from 'lodash'
 import {
   List,
   ListItem,
@@ -38,7 +39,7 @@ export default function Autocomplete(props) {
               <TimelineIcon />
             </ListItemIcon>
             <ListItemText primary={item} />
-            {ALGORITHMS[item]}
+            {get(ALGORITHMS[item], 'name', '')}
           </ListItem>
         ))}
       </List>

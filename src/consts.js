@@ -54,11 +54,23 @@ const PLAYGROUND_MEASUREMENTS = {
 }
 
 const ALGORITHMS = {
-  BFS: 'Breadth-First Search',
+  BFS: {
+    name: 'Breadth-First Search',
+    weighted: false,
+    shortest: true,
+  },
   // Dijkstra: 'Dijkstra',
   // 'A*': 'A-Star',
-  'Greedy-BFS': 'Greedy-BFS',
-  DFS: 'Depth-First Search',
+  'Greedy-BFS': {
+    name: 'Greedy-BFS',
+    weighted: true,
+    shortest: false,
+  },
+  DFS: {
+    name: 'Depth-First Search',
+    weighted: false,
+    shortest: false,
+  },
 }
 
 const COLORS = [

@@ -7,8 +7,8 @@ import {
   makeStyles,
 } from '@material-ui/core'
 import { connect } from 'react-redux'
-import MoneyIcon from '@material-ui/icons/Money'
 import AdjustIcon from '@material-ui/icons/Adjust'
+import TuneIcon from '@material-ui/icons/Tune'
 
 import Autocomplete from './Autocomplete'
 import WzSearchInput from '../../Common/WzSearchInput'
@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 function Settings(props) {
   const classes = useStyles()
   const [creatingMaze, setCreatingMaze] = useState(false)
+  const [isAutoOn, setIsAuto] = useState(false)
   const {
     algorithm,
     isAlgorithmRunning,
@@ -58,7 +59,7 @@ function Settings(props) {
   const itemList = Object.keys(ALGORITHMS)
     .filter((e) => e.toUpperCase().includes(algorithm.toUpperCase()))
 
-  const isAutoCompleteOn = algorithm.length >= 1 && !ALGORITHMS[algorithm]
+  const isAutoCompleteOn = isAutoOn && !ALGORITHMS[algorithm]
 
   return (
     <>
@@ -79,7 +80,7 @@ function Settings(props) {
       </Container>
       <br />
       <Container maxWidth="sm" className={classes.filterContainer}>
-        <AdjustIcon color="primary" />
+        <TuneIcon color="primary" />
         <SwitchContainer
           checked={creatingMaze}
           onChange={({ target: { checked } }) => {
@@ -95,10 +96,17 @@ function Settings(props) {
         />
       </Container>
       <Container maxWidth="sm" className={classes.container}>
-        <MoneyIcon color="primary" />
+        <AdjustIcon color="primary" />
         <div className={classes.title}>
           <WzSearchInput
             value={algorithm}
+            onFocus={() => {
+              dispatch(setAlgorithm(''))
+              setIsAuto(true)
+            }}
+            onBlur={() => {
+              setTimeout(() => setIsAuto(false), 100)
+            }}
             onChange={({ target: { value } }) => dispatch(setAlgorithm(value))}
           />
         </div>

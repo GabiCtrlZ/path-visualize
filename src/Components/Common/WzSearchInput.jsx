@@ -1,4 +1,5 @@
 import React from 'react'
+import { get } from 'lodash'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import InputBase from '@material-ui/core/InputBase'
@@ -30,7 +31,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function WzSearchInput(props) {
   const classes = useStyles()
-  const { value, onChange } = props
+  const {
+    value,
+    onChange,
+    onFocus,
+    onBlur,
+  } = props
 
   return (
     <Paper component="form" className={classes.root}>
@@ -40,9 +46,11 @@ export default function WzSearchInput(props) {
         onChange={onChange}
         placeholder="Enter algorithm"
         inputProps={{ 'aria-label': 'algorithm' }}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
       <div className={classes.currencyName}>
-        {ALGORITHMS[value]}
+        {get(ALGORITHMS[value], 'name', '')}
       </div>
       <IconButton type="submit" disabled className={classes.iconButton} aria-label="search">
         <SearchIcon />
