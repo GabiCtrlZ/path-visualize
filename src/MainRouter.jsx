@@ -5,11 +5,11 @@ import MainScreen from './Components/MainScreen/MainScreen'
 function MainRouter() {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/path-visualize">
         <MainScreen />
       </Route>
       <Route>
-        <Redirect to="/" />
+        <Redirect to="/path-visualize" />
       </Route>
     </Switch>
   )
