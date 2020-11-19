@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
 
 import SearchDrawer from './SearchDrawer'
+import TutorialModal from '../TutorialModal/TutorialModal'
 
 const useStyles = makeStyles(({ spacing }) => ({
   container: {
@@ -20,10 +21,12 @@ const useStyles = makeStyles(({ spacing }) => ({
 
 function MainScreen(props) {
   const classes = useStyles(props)
+  const [open, setOpen] = useState(true)
 
   return (
     <div className={classes.container}>
       <SearchDrawer />
+      {open && <TutorialModal open={open} onClose={() => setOpen(false)} />}
     </div>
   )
 }
