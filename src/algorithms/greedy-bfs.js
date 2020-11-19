@@ -36,7 +36,6 @@ export default async () => {
   const q = pq(start, cf)
 
   const visited = []
-  const queue = []
   const path = []
 
   const [matrixCopy, p] = matrixCloner(matrix)
@@ -60,7 +59,6 @@ export default async () => {
         q.insert(q, [nx, ny])
         p[nx][ny] = [x, y]
         matrixCopy[nx][ny] = 'visited'
-        queue.push([nx, ny])
       }
       if (nx === ex && ny === ey) {
         p[nx][ny] = [x, y]

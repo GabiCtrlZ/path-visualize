@@ -44,7 +44,7 @@ export default async () => {
       const ny = y + vy
       const neighbor = get(matrixCopy, [nx, ny], '')
       if (neighbor === 'unvisited') {
-        q.unshift([nx, ny])
+        q.push([nx, ny])
         p[nx][ny] = [x, y]
         matrixCopy[nx][ny] = 'visited'
       }

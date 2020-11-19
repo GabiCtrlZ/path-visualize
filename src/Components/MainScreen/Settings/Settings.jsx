@@ -50,6 +50,7 @@ function Settings(props) {
   const [creatingMaze, setCreatingMaze] = useState(false)
   const {
     algorithm,
+    isAlgorithmRunning,
     dispatch,
   } = props
 
@@ -81,7 +82,7 @@ function Settings(props) {
         <SwitchContainer
           checked={creatingMaze}
           onChange={({ target: { checked } }) => {
-            if (!creatingMaze) {
+            if (!creatingMaze && !isAlgorithmRunning) {
               setCreatingMaze(checked)
               dispatch(resetMatrix())
               dispatch(setInApp('isAlgorithmRunning', true))
@@ -108,9 +109,10 @@ function Settings(props) {
   )
 }
 
-const mapStateToProps = ({ app: { dataStracture, algorithm } }) => ({
+const mapStateToProps = ({ app: { dataStracture, algorithm, isAlgorithmRunning } }) => ({
   dataStracture,
   algorithm,
+  isAlgorithmRunning,
 })
 
 export default connect(mapStateToProps)(Settings)

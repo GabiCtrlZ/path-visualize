@@ -55,6 +55,7 @@ const ALGORITHMS = {
   // Dijkstra: 'Dijkstra',
   // 'A*': 'A-Star',
   'Greedy-BFS': 'Greedy-BFS',
+  DFS: 'Depth-First Search',
 }
 
 const COLORS = [

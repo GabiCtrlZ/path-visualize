@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchDrawer(props) {
   const classes = useStyles()
-  const { dispatch } = props
+  const { dispatch, isAlgorithmRunning } = props
 
   return (
     <div className={classes.root}>
@@ -70,8 +70,9 @@ function SearchDrawer(props) {
           <Button
             variant="outlined"
             color="secondary"
+            disabled={isAlgorithmRunning}
             startIcon={<DeleteIcon />}
-            onClick={() => dispatch(resetMatrix())}
+            onClick={() => (!isAlgorithmRunning && dispatch(resetMatrix()))}
           >
             Reset Playground
           </Button>
@@ -99,4 +100,8 @@ function SearchDrawer(props) {
   )
 }
 
-export default connect()(SearchDrawer)
+const mapStateToProps = ({ app: { isAlgorithmRunning } }) => ({
+  isAlgorithmRunning,
+})
+
+export default connect(mapStateToProps)(SearchDrawer)
