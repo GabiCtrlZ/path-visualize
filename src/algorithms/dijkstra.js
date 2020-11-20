@@ -7,6 +7,7 @@ import { setInApp } from '../store/actions/app'
 import { setMatrixSquare } from '../store/actions/matrix'
 import store from '../store/store'
 import matrixCloner from '../lib/matrix-cloner'
+import pq from '../lib/priority-queue'
 
 const visitedDelay = 20
 const pathDelay = 100
@@ -21,7 +22,16 @@ const vectors = [
 export default async () => {
   const { app: { start, end }, matrix } = store.getState()
   const [ex, ey] = end
-  const q = [start]
+
+  const cf = (p1, p2) => {
+    // custom compare function, using euclidian dist
+
+    if (!p1) return true
+    if (!p2) return true
+    return -p1[2] >= -p2[2]
+  }
+
+  const q = pq(start, cf)
 
   const visited = []
   const path = []
@@ -36,21 +46,24 @@ export default async () => {
       store.dispatch(setInApp('isAlgorithmFinished', true))
       return store.dispatch(setInApp('isAlgorithmRunning', false))
     }
-    const [x, y] = q.pop()
+    const [x, y] = q.pop(q)
     visited.push([x, y])
+    matrixCopy[x][y] = 'visited'
+    if (x === ex && y === ey) {
+      found = true
+    }
 
     for (const [vx, vy] of vectors) {
       const nx = x + vx
       const ny = y + vy
       const neighbor = get(matrixCopy, [nx, ny], '')
-      if (neighbor === 'unvisited') {
-        q.push([nx, ny])
-        p[nx][ny] = [x, y]
-        matrixCopy[nx][ny] = 'visited'
-      }
-      if (nx === ex && ny === ey) {
-        p[nx][ny] = [x, y]
-        found = true
+      if (neighbor === 'unvisited' || neighbor === 'weight' || neighbor === 'end') {
+        const nodeCost = get(p[nx][ny], '2', Infinity)
+        const cost = get(p[x][y], '2', 0) + (neighbor === 'weight' ? 15 : 1)
+        if (nodeCost > cost) {
+          q.insert(q, [nx, ny, cost])
+          p[nx][ny] = [x, y, cost]
+        }
       }
     }
   }

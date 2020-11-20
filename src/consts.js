@@ -59,8 +59,16 @@ const ALGORITHMS = {
     weighted: false,
     shortest: true,
   },
-  // Dijkstra: 'Dijkstra',
-  // 'A*': 'A-Star',
+  Dijkstra: {
+    name: 'Dijkstra',
+    weighted: true,
+    shortest: true,
+  },
+  'A*': {
+    name: 'A-Star',
+    weighted: true,
+    shortest: true,
+  },
   'Greedy-BFS': {
     name: 'Greedy-BFS',
     weighted: true,

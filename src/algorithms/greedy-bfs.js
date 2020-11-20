@@ -81,7 +81,7 @@ export default async () => {
     return
   }
 
-  let [sx, sy] = get(p, end, [0, 0])
+  let [sx, sy] = end
 
   while ((sx !== start[0]) || (sy !== start[1])) {
     path.push([sx, sy])
@@ -90,6 +90,8 @@ export default async () => {
     sx = parent[0]
     sy = parent[1]
   }
+  path.push([sx, sy])
+
   path.reverse().forEach((node, i) => {
     setTimeout(() => {
       store.dispatch(setMatrixSquare(node, 'path'))
