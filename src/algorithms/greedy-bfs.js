@@ -55,7 +55,7 @@ export default async () => {
       const nx = x + vx
       const ny = y + vy
       const neighbor = get(matrixCopy, [nx, ny], '')
-      if (neighbor === 'unvisited') {
+      if (neighbor === 'unvisited' || neighbor === 'weight') {
         q.insert(q, [nx, ny])
         p[nx][ny] = [x, y]
         matrixCopy[nx][ny] = 'visited'
@@ -67,7 +67,7 @@ export default async () => {
     }
   }
 
-  visited.slice(1).forEach((node, i) => {
+  visited.forEach((node, i) => {
     setTimeout(() => {
       store.dispatch(setMatrixSquare(node, 'visited'))
     }, i * visitedDelay)

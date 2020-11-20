@@ -55,7 +55,7 @@ export default async () => {
     }
   }
 
-  visited.slice(1).forEach((node, i) => {
+  visited.forEach((node, i) => {
     setTimeout(() => {
       store.dispatch(setMatrixSquare(node, 'visited'))
     }, i * visitedDelay)

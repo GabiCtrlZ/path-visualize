@@ -20,7 +20,10 @@ const initMatrix = () => {
 const initialState = initMatrix()
 
 export default handleActions({
-  [matrixTypes.setSquare]: (state, { payload: { pos, type } }) => state.setIn(pos, type),
+  [matrixTypes.setSquare]: (state, { payload: { pos, type } }) => {
+    const toSet = type === 'path' || type === 'visited' ? `${state[pos[0]][pos[1]].split(':')[0]}:${type}` : type
+    return state.setIn(pos, toSet)
+  },
   [matrixTypes.resetMatrix]: (() => initMatrix()),
   [matrixTypes.clearVisited]: ((state) => Immutable(matrixCloner(state)[0])),
 }, initialState)

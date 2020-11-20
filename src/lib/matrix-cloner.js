@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 export default (matrix) => {
   const matrixCopy = []
   const p = []
@@ -5,7 +6,7 @@ export default (matrix) => {
     matrixCopy[i] = []
     p[i] = []
     for (let j = 0; j < matrix[0].length; j++) {
-      matrixCopy[i][j] = matrix[i][j] === 'path' || matrix[i][j] === 'visited' ? 'unvisited' : matrix[i][j]
+      matrixCopy[i][j] = matrix[i][j].split(':')[0]
       p[i][j] = ''
     }
   }

@@ -143,31 +143,34 @@ function Matrix(props) {
       className={classes.row}
       key={i}
     >
-      {e.map((type, j) => (
-        <div
-          className={`${classes.line} ${classes[type]}`}
-          role="button"
-          tabIndex={0}
-          style={{
-            backgroundImage: `url(${icons[type]})`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-          }}
-          alt="grid-button"
-          onMouseOver={({ buttons }) => {
-            if (buttons === 1 && action !== type && !isAlgorithmRunning) {
-              handleClick(i, j)
-            }
-          }}
-          onClick={() => {
-            if (action !== type && !isAlgorithmRunning) {
-              handleClick(i, j)
-            }
-          }}
-          key={`${i}-${j}`}
-        />
-      ))}
+      {e.map((value, j) => {
+        const [type, secondary] = value.split(':')
+        return (
+          <div
+            className={`${classes.line} ${classes[type]} ${classes[secondary]}`}
+            role="button"
+            tabIndex={0}
+            style={{
+              backgroundImage: `url(${icons[type]})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+            }}
+            alt="grid-button"
+            onMouseOver={({ buttons }) => {
+              if (buttons === 1 && action !== type && !isAlgorithmRunning) {
+                handleClick(i, j)
+              }
+            }}
+            onClick={() => {
+              if (action !== type && !isAlgorithmRunning) {
+                handleClick(i, j)
+              }
+            }}
+            key={`${i}-${j}`}
+          />
+        )
+      })}
     </div>
   ))
 }

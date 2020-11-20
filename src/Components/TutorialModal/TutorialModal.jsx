@@ -10,12 +10,19 @@ import tutorialContent from './tutorial-content.json'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '80vh',
+    justifyContent: 'space-between',
   },
   bottom: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: theme.spacing(),
+  },
+  dialog: {
+    minHeight: '80vh',
   },
   button: {
     marginRight: theme.spacing(1),
@@ -90,8 +97,10 @@ function HorizontalLinearStepper({ onClose }) {
         )}
         <div className={classes.instructions}>
           <h1>{tutorialContent[activeStep].header}</h1>
-          {tutorialContent[activeStep].subheader && <h3>{tutorialContent[activeStep].subheader}</h3>}
-          {tutorialContent[activeStep].content && <p>{tutorialContent[activeStep].content}</p>}
+          {tutorialContent[activeStep].subheader && <h2>{tutorialContent[activeStep].subheader}</h2>}
+          {tutorialContent[activeStep].content && (
+            <h3 style={{ maxWidth: '700px' }}>{tutorialContent[activeStep].content}</h3>
+          )}
           <div className={classes.imgcontainer}>
             {tutorialContent[activeStep].imgs && tutorialContent[activeStep].imgs.map((e) => (
               <img key={e} src={e} alt="create-maze" style={{ maxHeight: '315px' }} />
@@ -116,6 +125,7 @@ function HorizontalLinearStepper({ onClose }) {
 }
 
 export default function TutorialModal(props) {
+  const classes = useStyles()
   const { onClose, open } = props
 
   return (
@@ -125,6 +135,7 @@ export default function TutorialModal(props) {
       onClose={onClose}
       aria-labelledby="dialog-title"
       open={open}
+      classes={{ paper: classes.dialog }}
     >
       <HorizontalLinearStepper onClose={onClose} />
     </Dialog>
