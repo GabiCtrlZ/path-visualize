@@ -81,6 +81,11 @@ const ALGORITHMS = {
   },
 }
 
+const DELAYS = {
+  visitedDelay: 20,
+  pathDelay: 60,
+}
+
 const COLORS = [
   '#7cb9e8',
   '#c9ffe5',
@@ -106,6 +111,7 @@ const COLORS = [
 
 export {
   DRAWER_SIZE,
+  DELAYS,
   IS_MOBILE,
   LANGS,
   COLORS,
