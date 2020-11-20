@@ -8,7 +8,7 @@
     "secondary": "To remove everything reset playground"
   },
   "weight": {
-    "main": "Weighted node, passing it \"costs\" 3 normal moves",
+    "main": "Weighted node, passing it \"costs\" 10 more than normal nodes",
     "secondary": "BFS doesn't support weighted nodes"
   },
   "start": {

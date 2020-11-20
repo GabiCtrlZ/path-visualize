@@ -59,7 +59,7 @@ export default async () => {
       const neighbor = get(matrixCopy, [nx, ny], '')
       if (neighbor === 'unvisited' || neighbor === 'weight' || neighbor === 'end') {
         const nodeCost = get(p[nx][ny], '2', Infinity)
-        const cost = get(p[x][y], '2', 0) + (neighbor === 'weight' ? 15 : 1)
+        const cost = get(p[x][y], '2', 0) + (neighbor === 'weight' ? 10 : 1)
         if (nodeCost > cost) {
           q.insert(q, [nx, ny, cost])
           p[nx][ny] = [x, y, cost]
