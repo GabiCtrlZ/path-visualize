@@ -105,7 +105,7 @@ function Settings(props) {
               setIsAuto(true)
             }}
             onBlur={() => {
-              setTimeout(() => setIsAuto(false), 100)
+              setTimeout(() => setIsAuto(false), 200)
             }}
             onChange={({ target: { value } }) => dispatch(setAlgorithm(value))}
           />
